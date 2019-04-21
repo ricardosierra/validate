@@ -1,0 +1,35 @@
+{
+    "name": "ricardosierra/validate",
+    "type": "library",
+    "description": "Validate is a PHP library that validate and filter data for you.",
+    "keywords": ["validate", "filter", "data"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ricardo Rebello Sierra"
+        }
+    ],
+    "require": {
+        "php": "^5.3.3 || ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8.35 || ^5.7",
+        "squizlabs/php_codesniffer": "^1.5",
+        "ext-intl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Validate\\": "src/Validate/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Validate\\Test\\": "test/Validate/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
