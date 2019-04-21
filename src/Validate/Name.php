@@ -25,7 +25,7 @@ class Name extends Validate
 
     public static function toDatabase($fullName)
     {
-        return $fullName;
+        return parent::toDatabase(strtoupper($fullName));
     }
 
     public static function validate($fullName)
