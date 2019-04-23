@@ -5,6 +5,7 @@ namespace Validate;
 abstract class Validate
 {
     public static $notPermit = [
+        'TEST',
         'TESTE',
         'TESTANDO',
         'TESTADOR'

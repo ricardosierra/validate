@@ -4,24 +4,6 @@ namespace Validate;
 
 class Name extends Validate
 {
-    public static $notPermit = [
-        'TESTE',
-        'TESTANDO',
-        'TESTADOR'
-    ];
-    public static $notPermitInFirstName = [
-        'CURIOSO'
-    ];
-
-    public static function incluiInArray($name, $array)
-    {
-        foreach ($array as $notPermit) {
-            if(strpos(self::toDatabase($name), $notPermit) !=0){
-                return true;
-            }
-        }
-        return false;
-    }
 
     public static function toDatabase($fullName)
     {
@@ -30,25 +12,38 @@ class Name extends Validate
 
     public static function validate($fullName)
     {
-        $nomes = explode(" ", trim($fullName));
+        $name = self::break($fullName);
 
-        if ($nomes<2) {
+        if ($name['sobrenomes'] < 1) {
             return false;
         }
 
-        if (self::incluiInArray($name, self::$notPermit)) {
+        if (static::incluiInArray($name['full'], static::$notPermit)) {
             return false;
         }
 
-        if (self::incluiInArray($nomes[0], self::$notPermitInFirstName)) {
+        if (static::incluiInArray($name['first'], static::$notPermitInFirst)) {
             return false;
         }
 
-        if (filter_var($fullName, FILTER_SANITIZE_NUMBER_INT) !== '') {
+        if (filter_var($name['full'], FILTER_SANITIZE_NUMBER_INT) !== '') {
             return false;
         }
 
         return true;
+    }
+
+    public static function break($fullName)
+    {
+        $fullName = self::toDatabase($fullName);
+        $nomes = explode(" ", trim($fullName));
+        return [
+            'first' => $nomes[0],
+            'names' => $nomes,
+            'full' => $fullName,
+            'last' => $nomes[count($nomes)-1],
+            'sobrenomes' => count($nomes)-1
+        ];
     }
 
 }

@@ -117,6 +117,17 @@ class Email extends Validate
         return true;
     }
 
+    /**
+     * Break Email
+     */
+    public static function break($email)
+    {
+        $email = explode('@', $email);
+        $data['address'] = $email[0];
+        $data['domain'] = $email[1];
+        return $data;
+    }
+
     /** 
      * Set email address for SMTP request 
      * @param string $email Email address 
