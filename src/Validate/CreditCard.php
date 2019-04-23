@@ -5,31 +5,13 @@ namespace Validate;
 class CreditCard extends Validate
 {
 
-    public static function toDatabase($fullName)
+    public static function toDatabase($creditCardNumber)
     {
-        return parent::toDatabase(strtoupper($fullName));
+        return parent::toDatabase(strtoupper($creditCardNumber));
     }
 
-    public static function validate($fullName)
+    public static function validate($creditCardNumber)
     {
-        $nomes = explode(" ", trim($fullName));
-
-        if ($nomes<2) {
-            return false;
-        }
-
-        if (static::incluiInArray($name, static::$notPermit)) {
-            return false;
-        }
-
-        if (static::incluiInArray($nomes[0], static::$notPermitInFirstName)) {
-            return false;
-        }
-
-        if (filter_var($fullName, FILTER_SANITIZE_NUMBER_INT) !== '') {
-            return false;
-        }
-
         return true;
     }
 

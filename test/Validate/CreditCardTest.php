@@ -15,7 +15,8 @@ final class CreditCardTest extends TestCase
      */
     public function testValidate()
     {
-        $this->assertEquals(CreditCard::validate('4111111111111111'), true);
+        $this->assertEquals(true, CreditCard::validate('4111111111111111'));
+        $this->assertEquals(false, CreditCard::validate('1111111111111111'));
     }
 
     /**
@@ -25,7 +26,7 @@ final class CreditCardTest extends TestCase
      */
     public function testYearFilter()
     {
-        $this->assertEquals((string) CreditCard::year('21'), '2021');
-        $this->assertEquals((string) CreditCard::year('91'), '1991');
+        $this->assertEquals('2021', (string) CreditCard::year('21'));
+        $this->assertEquals('1991', (string) CreditCard::year('91'));
     }
 }

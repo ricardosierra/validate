@@ -45,9 +45,6 @@ class Phone extends Validate
         $data['country'] = '55';
         $data['region'] = '61';
 
-        var_dump('oi'.$phone.'-'.strlen($phone));
-
-
         if (strlen($phone)>=12) {
             $data['country'] = substr($phone, 0, 2);
             $phone = substr($phone, 2, strlen($phone)-2);

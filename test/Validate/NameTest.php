@@ -15,7 +15,7 @@ final class NameTest extends TestCase
      */
     public function testToDatabase()
     {
-        $this->assertEquals(Name::toDatabase('Ricardo Sierra'), 'RICARDO SIERRA');
+        $this->assertEquals('RICARDO SIERRA', Name::toDatabase('Ricardo Sierra'));
     }
 
     /**
@@ -26,14 +26,14 @@ final class NameTest extends TestCase
     public function testValidate()
     {
         // Nome incompleto deve retornar false
-        $this->assertEquals(Name::validate('Ricardo'), false);
+        $this->assertEquals(false, Name::validate('Ricardo'));
 
-        $this->assertEquals(Name::validate('Sierra Testador'), false);
-        $this->assertEquals(Name::validate('Ricardo Sierra'), true);
+        $this->assertEquals(false, Name::validate('Sierra Testador'));
+        $this->assertEquals(true, Name::validate('Ricardo Sierra'));
 
-        $this->assertEquals(Name::validate('Ricardo Si2erra'), false);
+        $this->assertEquals(false, Name::validate('Ricardo Si2erra'));
 
-        $this->assertEquals(Name::validate('Teste Sierra'), false);
+        $this->assertEquals(false, Name::validate('Teste Sierra'));
     }
 
     /**
@@ -44,10 +44,10 @@ final class NameTest extends TestCase
     public function testBreak()
     {
         $name = Name::break('RICARDO R SIERRA');
-        $this->assertEquals((string) $name['first'], 'RICARDO');
-        $this->assertEquals((string) $name['last'], 'SIERRA');
+        $this->assertEquals($name['first'], 'RICARDO');
+        $this->assertEquals($name['last'], 'SIERRA');
         $name = Name::break('Ricardo Sierra');
-        $this->assertEquals((string) $name['first'], 'RICARDO');
-        $this->assertEquals((string) $name['last'], 'SIERRA');
+        $this->assertEquals($name['first'], 'RICARDO');
+        $this->assertEquals($name['last'], 'SIERRA');
     }
 }
