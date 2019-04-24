@@ -23,6 +23,17 @@ This package provides a pure PHP validator for field in differents formats
   
 ## Examples 
 
+### Validate Full Name
+
+```php
+<?php
+
+\Validate\Name::validate('Ricardo Sierra'); // True
+\Validate\Name::validate('Ricardo'); // False
+\Validate\Name::validate('Ricardo 123'); // False
+\Validate\Name::validate('Teste Sierra'); // False
+```
+
 ### Validate Email
 ```php
 <?php
