@@ -23,7 +23,7 @@ class Gender implements \Validate\Contracts\Validate
 
     public static function toDatabase($gender)
     {
-        return substr((string) self::filter(strtoupper(preg_replace('/[^0-9]/', '',$gender))), 0, 1);
+        return substr(((string) self::filter(strtoupper(preg_replace('/[^A-z]/', '',$gender)))), 0, 1);
     }
 
     public static function filter($gender) {
@@ -54,10 +54,10 @@ class Gender implements \Validate\Contracts\Validate
         $gender = self::toDatabase($gender);
 
         if ($gender !== 'U' && $gender !== 'M' && $gender !== 'F') {
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     }
 
 }
