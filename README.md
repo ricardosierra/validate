@@ -16,11 +16,10 @@ This package provides a pure PHP validator for field in differents formats
 
  * PHP 7.0+
  * Composer
- * ext-gmp
 
 ## Installation
 
- You can install this library via Composer: `composer require bitwasp/buffertools` 
+ You can install this library via Composer: `composer require ricardosierra/validate` 
   
 ## Examples 
 
