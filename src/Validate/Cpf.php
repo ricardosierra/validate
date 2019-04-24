@@ -4,7 +4,7 @@ namespace Validate;
 
 use Validate\Traits\FakeNameTrait;
 
-class Cep implements \Validate\Contracts\Validate
+class Cpf implements \Validate\Contracts\Validate
 {
     use FakeNameTrait;
 
