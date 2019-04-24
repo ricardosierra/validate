@@ -1,9 +1,30 @@
-# validate
+Validate Fields in PHP
+=============
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ricardosierra/validate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ricardosierra/validate/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/ricardosierra/validate/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/ricardosierra/validate/?branch=master)
+
+[![Latest Stable Version](https://poser.pugx.org/ricardosierra/validate/v/stable.png)](https://packagist.org/packages/ricardosierra/validate)
+[![Total Downloads](https://poser.pugx.org/ricardosierra/validate/downloads.png)](https://packagist.org/packages/ricardosierra/validate)
+[![Latest Unstable Version](https://poser.pugx.org/ricardosierra/validate/v/unstable.png)](https://packagist.org/packages/ricardosierra/validate)
+[![License](https://poser.pugx.org/ricardosierra/validate/license.png)](https://packagist.org/packages/ricardosierra/validate)
+
+This package provides a pure PHP validator for field in differents formats
 
 
+## Requirements:
 
+ * PHP 7.0+
+ * Composer
+ * ext-gmp
 
-## Validate Email
+## Installation
+
+ You can install this library via Composer: `composer require bitwasp/buffertools` 
+  
+## Examples 
+
+### Validate Email
 ```php
 <?php
 
@@ -36,3 +57,11 @@ if($mail->check($email)){
 
 ?>
 ```
+
+
+
+## Contributing
+
+For contributing guidelines, please see [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## Credits
