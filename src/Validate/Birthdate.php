@@ -2,8 +2,11 @@
 
 namespace Validate;
 
-class Birthdate extends Date
+use Validate\Traits\FakeNameTrait;
+
+class Birthdate extends Date implements \Validate\Contracts\Validate
 {
+    use FakeNameTrait;
 
     public static function toDatabase($birthdate)
     {

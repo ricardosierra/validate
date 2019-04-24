@@ -10,7 +10,7 @@ interface Validate
      * @param  string  $field
      * @return string
      */
-    public static function toDatabase($field);
+    public static function toDatabase(string $field);
 
     /**
      * Restore a lock instance using the owner identifier.

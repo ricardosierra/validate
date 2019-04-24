@@ -2,12 +2,20 @@
 
 namespace Validate;
 
-class Name extends Validate
-{
+use Validate\Traits\FakeNameTrait;
 
-    public static function toDatabase($fullName)
+class Name implements \Validate\Contracts\Validate
+{
+    use FakeNameTrait;
+
+    public static function toDatabase(string $fullName)
     {
-        return parent::toDatabase(strtoupper($fullName));
+        return strtoupper($fullName);
+    }
+
+    public static function toUser($fullName)
+    {
+        return $fullName;
     }
 
     public static function validate($fullName)

@@ -4,8 +4,11 @@ namespace Validate;
 
 use Exception;
 
-class Email extends Validate
+use Validate\Traits\FakeNameTrait;
+
+class Email implements \Validate\Contracts\Validate
 {
+    use FakeNameTrait;
 
     protected $stream = false; 
 
@@ -115,6 +118,22 @@ class Email extends Validate
         } 
 
         return true;
+    }
+
+    /**
+     * Break Email
+     */
+    public static function toDatabase($email)
+    {
+        return $email;
+    }
+
+    /**
+     * Break Email
+     */
+    public static function toUser($email)
+    {
+        return $email;
     }
 
     /**

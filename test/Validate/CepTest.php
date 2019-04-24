@@ -15,7 +15,6 @@ final class CepTest extends TestCase
      */
     public function testValidate()
     {
-        // Nome incompleto deve retornar false
         $this->assertEquals(true, Cep::validate('22.460-030'));
         $this->assertEquals(true, Cep::validate('22460030'));
         $this->assertEquals(false, Cep::validate('220.360-030'));

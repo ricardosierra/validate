@@ -2,12 +2,15 @@
 
 namespace Validate;
 
-class Cpf extends Validate
+use Validate\Traits\FakeNameTrait;
+
+class Cep implements \Validate\Contracts\Validate
 {
+    use FakeNameTrait;
 
     public static function toDatabase($cpf)
     {
-        return parent::toDatabase(preg_replace('/[^0-9]/', '', $cpf));
+        return preg_replace('/[^0-9]/', '', $cpf);
     }
 
     public static function validate($cpf)

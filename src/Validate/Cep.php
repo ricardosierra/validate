@@ -2,12 +2,19 @@
 
 namespace Validate;
 
-class Cep extends Validate
+use Validate\Traits\FakeNameTrait;
+
+class Cep implements \Validate\Contracts\Validate
 {
+    use FakeNameTrait;
 
     public static function toDatabase($cep)
     {
-        return parent::toDatabase(trim($cep));
+        return preg_replace('/[^0-9]/', '', trim($cep));
+    }
+    public static function toUser($cep)
+    {
+        return $cep;
     }
 
     public static function validate($cep)

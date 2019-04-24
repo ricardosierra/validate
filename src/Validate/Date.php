@@ -4,8 +4,11 @@ namespace Validate;
 
 use Carbon\Carbon;
 
-class Date extends Validate
+use Validate\Traits\FakeNameTrait;
+
+class Date implements \Validate\Contracts\Validate
 {
+    use FakeNameTrait;
 
     public static function toDatabase($dataOriginal)
     {
@@ -16,10 +19,10 @@ class Date extends Validate
             }            
             return $data[2] .'-'. $data[1] .'-'. $data[0];
         }
-        return parent::toDatabase($dataOriginal);
+        return $dataOriginal;
     }
 
-    public static function dateToUser($data)
+    public static function toUser($data)
     {
         return $data;
     }

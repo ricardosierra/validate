@@ -2,22 +2,30 @@
 
 namespace Validate;
 
-class Phone extends Validate
-{
+use Validate\Traits\FakeNameTrait;
 
-    public static function toDatabase($phone)
+class Phone implements \Validate\Contracts\Validate
+{
+    use FakeNameTrait;
+
+    public static function toDatabase(string $phone)
     {
         $phone = preg_replace('/[^0-9]/', '', $phone);
-        if (substr($phone,0,2)=='55') {
+        if (substr((string) $phone,0,2)=='55') {
             return $phone;
         }
         if (empty($phone) || $phone=='55') {
             return null;
         }
         if (strlen($phone)>11) {
-            return parent::toDatabase($phone);
+            return $phone;
         }
-        return parent::toDatabase('55'.$phone);
+        return '55'.$phone;
+    }
+
+    public static function toUser($phone)
+    {
+        return $phone;
     }
 
     public static function validate($phone)
@@ -43,20 +51,20 @@ class Phone extends Validate
         return true;
     }
 
-    public static function break($phone)
+    public static function break(string $phone)
     {
         $phone = static::toDatabase($phone);
         $data['country'] = '55';
         $data['region'] = '61';
 
         if (strlen($phone)>=12) {
-            $data['country'] = substr($phone, 0, 2);
-            $phone = substr($phone, 2, strlen($phone)-2);
+            $data['country'] = substr((string) $phone, 0, 2);
+            $phone = substr((string) $phone, 2, strlen($phone)-2);
         }
 
         if (strlen($phone)>=10) {
-            $data['region'] = substr($phone, 0, 2);
-            $phone = substr($phone, 2, strlen($phone)-2);
+            $data['region'] = substr((string) $phone, 0, 2);
+            $phone = substr((string) $phone, 2, strlen($phone)-2);
         }
 
         $data['number'] = $phone;

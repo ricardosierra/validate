@@ -15,7 +15,6 @@ final class GenderTest extends TestCase
      */
     public function testValidate()
     {
-        // Nome incompleto deve retornar false
         $this->assertEquals(true, Gender::validate('M'));
         $this->assertEquals(false, Gender::validate('Z'));
     }

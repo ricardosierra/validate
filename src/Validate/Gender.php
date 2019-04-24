@@ -2,12 +2,38 @@
 
 namespace Validate;
 
-class Gender extends Validate
+use Validate\Traits\FakeNameTrait;
+
+class Gender implements \Validate\Contracts\Validate
 {
+    use FakeNameTrait;
+    
+    public static $toMale = [
+        'MASCULINO',
+        'HOMEM',
+        'MALE',
+        'MACHO'
+    ];
+    public static $toWoman = [
+        'FEMININO',
+        'MULHER',
+        'WOMAN',
+        'FEMIA'
+    ];
 
     public static function toDatabase($gender)
     {
-        return parent::toDatabase(strtoupper(preg_replace('/[^0-9]/', '', substr($gender, 0, 1))));
+        return substr((string) self::filter(strtoupper(preg_replace('/[^0-9]/', '',$gender))), 0, 1);
+    }
+
+    public static function filter($gender) {
+        if (static::incluiInArray($gender, static::$toMale)) {
+            return 'MASCULINO';
+        }
+        if (static::incluiInArray($gender, static::$toWoman)) {
+            return 'FEMININO';
+        }
+        return $gender;
     }
 
     public static function toUser($gender)
@@ -25,8 +51,13 @@ class Gender extends Validate
 
     public static function validate($gender)
     {
+        $gender = self::toDatabase($gender);
 
-        return true;
+        if ($gender !== 'U' && $gender !== 'M' && $gender !== 'F') {
+            return true;
+        }
+
+        return false;
     }
 
 }
