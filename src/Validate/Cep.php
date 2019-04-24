@@ -12,6 +12,7 @@ class Cep implements \Validate\Contracts\Validate
     {
         return preg_replace('/[^0-9]/', '', trim($cep));
     }
+    
     public static function toUser($cep)
     {
         return $cep;
