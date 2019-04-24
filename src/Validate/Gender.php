@@ -7,7 +7,7 @@ class Gender extends Validate
 
     public static function toDatabase($gender)
     {
-        return parent::toDatabase(strtoupper('/[^0-9]/', '', substr($gender, 0, 1)));
+        return parent::toDatabase(strtoupper(preg_replace('/[^0-9]/', '', substr($gender, 0, 1))));
     }
 
     public static function toUser($gender)
@@ -27,14 +27,6 @@ class Gender extends Validate
     {
 
         return true;
-    }
-
-    /** 
-     * Generos
-     */
-    public static function genderToDatabase($gender)
-    {
-        return strtoupper();
     }
 
 }

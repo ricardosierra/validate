@@ -2,12 +2,17 @@
 
 namespace Validate;
 
-class CreditCard extends Validate
+class CreditCard extends \Faker\Provider\Payment implements \Validate\Contracts\Validate
 {
 
     public static function toDatabase($creditCardNumber)
     {
-        return parent::toDatabase(strtoupper($creditCardNumber));
+        return strtoupper(preg_replace('/[^0-9]/', '', $creditCardNumber));
+    }
+
+    public static function toUser($creditCardNumber)
+    {
+        return strtoupper(preg_replace('/[^0-9]/', '', $creditCardNumber));
     }
 
     public static function validate($creditCardNumber)
@@ -15,17 +20,14 @@ class CreditCard extends Validate
         return true;
     }
 
+    public static function mounth($year)
+    {
+        return Date::validateMonth($year);
+    }
+
     public static function year($year)
     {
-        $year = (int) $year;
-        
-        if ($year>99) {
-            return $year;
-        }
-        if ($year>50){
-            return 1900+$year;
-        }
-        return 2000+$year;
+        return Date::yearToDatabase($year);
     }
 
 }

@@ -2,10 +2,12 @@
 
 namespace Validate;
 
+use Carbon\Carbon;
+
 class Date extends Validate
 {
 
-    public static function toDatabase($date)
+    public static function toDatabase($dataOriginal)
     {
         $data = explode('/', $dataOriginal);
         if (isset($data[2])){
@@ -22,26 +24,12 @@ class Date extends Validate
         return $data;
     }
 
-    public static function validate($date)
+    public static function validate($dataOriginal)
     {
-        $nomes = explode(" ", trim($date));
-
-        if ($nomes<2) {
-            return false;
+        $data = self::toDatabase($dataOriginal);
+        if (Carbon::createFromFormat('Y-m-d', $data) !== false) {
+            return true;
         }
-
-        if (static::incluiInArray($name, static::$notPermit)) {
-            return false;
-        }
-
-        if (static::incluiInArray($nomes[0], static::$notPermitInFirstName)) {
-            return false;
-        }
-
-        if (filter_var($date, FILTER_SANITIZE_NUMBER_INT) !== '') {
-            return false;
-        }
-
         return true;
     }
 
@@ -63,6 +51,19 @@ class Date extends Validate
             return false;
         }
         return true;
+    }
+
+    public static function yearToDatabase($year)
+    {
+        $year = (int) $year;
+        
+        if ($year>99) {
+            return $year;
+        }
+        if ($year>50){
+            return 1900+$year;
+        }
+        return 2000+$year;
     }
 
 }

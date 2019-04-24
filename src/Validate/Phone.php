@@ -36,6 +36,10 @@ class Phone extends Validate
             return false;
         }
 
+        if (strlen(static::toDatabase($phone)) < 12 || strlen(static::toDatabase($phone)) > 13) {
+            return false;
+        }
+
         return true;
     }
 

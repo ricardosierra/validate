@@ -2,7 +2,7 @@
 
 namespace Validate;
 
-class CreditCard extends Validate
+class Number extends Validate
 {
     /**
      * Remove Virgulas do Numeral e Add .
@@ -21,7 +21,7 @@ class CreditCard extends Validate
         return $number;
     }
 
-    public static function validate()
+    public static function validate($number)
     {
         return true;
     }
