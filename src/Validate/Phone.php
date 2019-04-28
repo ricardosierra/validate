@@ -28,9 +28,9 @@ class Phone implements \Validate\Contracts\Validate
         return $phone;
     }
 
-    public static function validate($phone)
+    public static function validate($phoneNumber)
     {
-        $phone = self::break($phone);
+        $phone = self::break($phoneNumber);
 
         if ((int) $phone['country'] === 0 ) {
             return false;
@@ -44,7 +44,7 @@ class Phone implements \Validate\Contracts\Validate
             return false;
         }
 
-        if (strlen(static::toDatabase($phone)) < 12 || strlen(static::toDatabase($phone)) > 13) {
+        if (strlen(static::toDatabase($phoneNumber)) < 12 || strlen(static::toDatabase($phoneNumber)) > 13) {
             return false;
         }
 

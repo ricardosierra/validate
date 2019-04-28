@@ -17,7 +17,7 @@ trait FakeNameTrait
     public static function incluiInArray($field, $array)
     {
         foreach ($array as $notPermit) {
-            if(strpos($field, $notPermit) !=0){
+            if(strpos($field, $notPermit) !== false){
                 return true;
             }
         }
