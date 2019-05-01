@@ -31,4 +31,14 @@ final class CepTest extends TestCase
         $this->assertEquals('22460030', Cep::toDatabase('22.460-030'));
     }
 
+    /**
+     *
+     * @group fast
+     * @return void
+     */
+    public function testIsSame()
+    {
+        $this->assertEquals(true, Cep::isSame('22.460-030', '22460030'));
+    }
+
 }

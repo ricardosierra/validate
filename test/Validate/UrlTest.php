@@ -79,4 +79,15 @@ final class UrlTest extends TestCase
     //     var_dump( Url::cleanLink($urlString, $urlParentString));
     //     $this->assertEquals($urlString, Url::cleanLink($urlString, $urlParentString));
     // }
+
+    /**
+     *
+     * @group fast
+     * @return void
+     */
+    public function testIsSame()
+    {
+        $this->assertEquals(true, Url::isSame('https://anima10.net', 'http://anima10.net'));
+        $this->assertEquals(false, Url::isSame('https://anima10.net', 'http://ricardosierra.com.br'));
+    }
 }

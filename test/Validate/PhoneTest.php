@@ -49,4 +49,14 @@ final class PhoneTest extends TestCase
         $this->assertEquals('21', $phone['region']);
         $this->assertEquals('999193898', $phone['number']);
     }
+
+    /**
+     *
+     * @group fast
+     * @return void
+     */
+    public function testIsSame()
+    {
+        $this->assertEquals(true, Phone::isSame('(21) 99919-3898', '2199919-3898'));
+    }
 }

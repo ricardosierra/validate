@@ -50,4 +50,17 @@ final class NameTest extends TestCase
         $this->assertEquals($name['first'], 'RICARDO');
         $this->assertEquals($name['last'], 'SIERRA');
     }
+
+    /**
+     *
+     * @group fast
+     * @return void
+     */
+    public function testIsSame()
+    {
+        $this->assertEquals(true, Name::isSame('Ricardo Sierra', 'RICARDO SIERRA'));
+        $this->assertEquals(true, Name::isSame('Ricardo Rebello Sierra', 'RICARDO SIERRA'));
+        $this->assertEquals(true, Name::isSame('Ricardo R Sierra', 'RICARDO SIERRA'));
+        $this->assertEquals(false, Name::isSame('Ricardo R Sierra', 'RICARDO SILVA'));
+    }
 }

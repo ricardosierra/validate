@@ -26,4 +26,9 @@ class Cep implements \Validate\Contracts\Validate
         return false;
     }
 
+    public static function isSame(string $to, string $from)
+    {
+        return (self::toDatabase($to)===self::toDatabase($from));
+    }
+
 }

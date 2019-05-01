@@ -33,6 +33,11 @@ class Url implements \Validate\Contracts\Validate
         return self::splitUrl($url);
     }
 
+    public static function isSame(string $to, string $from)
+    {
+        return (self::toDatabase($to)===self::toDatabase($from));
+    }
+
 
     /**
      * Given a URL calculates the page's directory

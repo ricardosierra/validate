@@ -54,4 +54,19 @@ class Name implements \Validate\Contracts\Validate
         ];
     }
 
+    public static function isSame(string $to, string $from)
+    {
+        $toBreak = self::break($to);
+        $fromBreak = self::break($from);
+        $to = self::toDatabase($to);
+        $from = self::toDatabase($from);
+        if ($to === $from) {
+            return true;
+        }
+        if ($toBreak['first'] === $fromBreak['first'] && $toBreak['last'] === $fromBreak['last']) {
+            return true;
+        }
+        return false;
+    }
+
 }

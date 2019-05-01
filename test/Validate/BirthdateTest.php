@@ -30,4 +30,14 @@ final class BirthdateTest extends TestCase
         $this->assertEquals('1991-08-28', Birthdate::toDatabase('28/08/1991'));
         $this->assertEquals('2091-08-28', Birthdate::toDatabase('28/08/2091'));
     }
+
+    /**
+     *
+     * @group fast
+     * @return void
+     */
+    public function testIsSame()
+    {
+        $this->assertEquals(true, Phone::isSame('1991-08-28', '28/08/1991'));
+    }
 }

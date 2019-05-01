@@ -69,4 +69,9 @@ class Date implements \Validate\Contracts\Validate
         return 2000+$year;
     }
 
+    public static function isSame(string $to, string $from)
+    {
+        return (self::toDatabase($to)===self::toDatabase($from));
+    }
+
 }

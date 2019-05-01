@@ -31,4 +31,14 @@ final class CpfTest extends TestCase
         $this->assertEquals('13278201701', Cpf::toDatabase('132.782.017-01'));
     }
 
+    /**
+     *
+     * @group fast
+     * @return void
+     */
+    public function testIsSame()
+    {
+        $this->assertEquals(true, Cpf::isSame('132.782.017-01', '13278201701'));
+    }
+
 }

@@ -92,6 +92,11 @@ class Email implements \Validate\Contracts\Validate
         $this->exceptions = (boolean) $exceptions; 
     } 
 
+    public static function isSame(string $to, string $from)
+    {
+        return (self::toDatabase($to)===self::toDatabase($from));
+    }
+
     /** 
      * Validate email address. 
      * @param string $email 

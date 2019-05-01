@@ -60,4 +60,9 @@ class Gender implements \Validate\Contracts\Validate
         return true;
     }
 
+    public static function isSame(string $to, string $from)
+    {
+        return (self::toDatabase($to)===self::toDatabase($from));
+    }
+
 }

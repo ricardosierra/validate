@@ -30,4 +30,9 @@ class CreditCard extends \Faker\Provider\Payment implements \Validate\Contracts\
         return Date::yearToDatabase($year);
     }
 
+    public static function isSame(string $to, string $from)
+    {
+        return (self::toDatabase($to)===self::toDatabase($from));
+    }
+
 }
