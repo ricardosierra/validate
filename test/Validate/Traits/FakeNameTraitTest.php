@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Validate\Test\Traits;
 
 use Validate\Traits\FakeNameTrait;
-use Validate\Gender;
 use PHPUnit\Framework\TestCase;
 
 class OnlyForTest

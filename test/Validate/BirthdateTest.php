@@ -38,6 +38,6 @@ final class BirthdateTest extends TestCase
      */
     public function testIsSame()
     {
-        $this->assertEquals(true, Phone::isSame('1991-08-28', '28/08/1991'));
+        $this->assertEquals(true, Birthdate::isSame('1991-08-28', '28/08/1991'));
     }
 }

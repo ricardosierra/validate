@@ -3,7 +3,6 @@
 namespace Validate;
 
 use Carbon\Carbon;
-
 use Validate\Traits\FakeNameTrait;
 
 class Date implements \Validate\Contracts\Validate
@@ -67,6 +66,11 @@ class Date implements \Validate\Contracts\Validate
             return 1900+$year;
         }
         return 2000+$year;
+    }
+
+    public static function monthToDatabase($month)
+    {
+        return $month;
     }
 
     public static function isSame(string $to, string $from)
