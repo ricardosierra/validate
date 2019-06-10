@@ -4,19 +4,19 @@ namespace Validate;
 
 use Validate\Traits\FakeNameTrait;
 
-class Phone implements \Validate\Contracts\Validate
+class Password implements \Validate\Contracts\Validate
 {
     use FakeNameTrait;
 
-    public static function toDatabase(string $phone)
+    public static function toDatabase(string $password)
     {
         // Change @todo
-        return md5($phone);
+        return md5($password);
     }
 
-    public static function toUser($phone)
+    public static function toUser($password)
     {
-        return $phone;
+        return $password;
     }
 
     public static function generate(
