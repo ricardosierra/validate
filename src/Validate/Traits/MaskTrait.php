@@ -2,6 +2,9 @@
 
 namespace Validate\Traits;
 
+/**
+ * Undocumented trait
+ */
 trait MaskTrait
 {
 
