@@ -1,4 +1,4 @@
-Validate Fields in PHP
+Validador de Campos PHP
 =============
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ricardosierra/validate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ricardosierra/validate/?branch=master)
@@ -9,24 +9,21 @@ Validate Fields in PHP
 [![Latest Unstable Version](https://poser.pugx.org/ricardosierra/validate/v/unstable.png)](https://packagist.org/packages/ricardosierra/validate)
 [![License](https://poser.pugx.org/ricardosierra/validate/license.png)](https://packagist.org/packages/ricardosierra/validate)
 
-This package provides a pure PHP validator for field in differents formats
+Esse pacote te da um validator em php puro para diferentes tipos de campos.
 
 
-[Se for BR clique aqui](./docs/pt-BR/README.md)
-
-
-## Requirements:
+## Requirementos:
 
  * PHP 7.0+
  * Composer
 
-## Installation
+## Instalando
 
- You can install this library via Composer: `composer require ricardosierra/validate` 
+ Você pode instalar esse biblioteca via compose: `composer require ricardosierra/validate` 
   
-## Examples 
+## Exemplos 
 
-### Validate Full Name
+### Validando Nomes Completos
 
 ```php
 <?php
@@ -37,7 +34,7 @@ This package provides a pure PHP validator for field in differents formats
 \Validate\Name::validate('Teste Sierra'); // False
 ```
 
-### Validate Email
+### Validando Emails
 ```php
 <?php
 
@@ -73,8 +70,8 @@ if($mail->check($email)){
 
 
 
-## Contributing
+## Contribuindo
 
 For contributing guidelines, please see [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Credits
+## Créditos
