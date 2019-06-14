@@ -2,13 +2,13 @@
 
 namespace Validate;
 
+use Validate\Traits\BlockStringTrait;
+use Validate\Traits\GetDataTrait;
 use Exception;
-
-use Validate\Traits\FakeNameTrait;
 
 class Email implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
+    use BlockStringTrait, GetDataTrait;
 
     protected $stream = false; 
 
@@ -110,11 +110,17 @@ class Email implements \Validate\Contracts\Validate
         
         $emailAddresse = explode("@", trim($email));
 
-        if (static::incluiInArray($emailAddresse[0], static::$notPermit)) {
-            return false;
-        }
 
-        if (static::incluiInArray($emailAddresse[0], static::$notPermitInFirst)) {
+        if (self::foundInMultiplesArrays([
+            [
+                $emailAddresse[0],
+                self::getListFromFile('black-names')
+            ],
+            [
+                $emailAddresse[0],
+                self::getListFromFile('black-first-names')
+            ],
+        ])){
             return false;
         }
 

@@ -2,11 +2,8 @@
 
 namespace Validate;
 
-use Validate\Traits\FakeNameTrait;
-
 class Url implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
 
     public static function toDatabase(string $url)
     {
@@ -64,7 +61,7 @@ class Url implements \Validate\Contracts\Validate
      *
      * @params string $relativeUrl link to clean
      * @parmas string $baseUrl directory of parent (linking) page
-     * @return strin cleaned link
+     * @return string cleaned link
      */
     public function cleanLink($relativeUrl, $baseUrl) {
 

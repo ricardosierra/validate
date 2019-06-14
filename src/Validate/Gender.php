@@ -2,24 +2,11 @@
 
 namespace Validate;
 
-use Validate\Traits\FakeNameTrait;
+use Validate\Traits\GetDataTrait;
 
 class Gender implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
-    
-    public static $toMale = [
-        'MASCULINO',
-        'HOMEM',
-        'MALE',
-        'MACHO'
-    ];
-    public static $toWoman = [
-        'FEMININO',
-        'MULHER',
-        'WOMAN',
-        'FEMIA'
-    ];
+    use GetDataTrait;
 
     public static function toDatabase($gender)
     {
@@ -27,10 +14,10 @@ class Gender implements \Validate\Contracts\Validate
     }
 
     public static function filter($gender) {
-        if (static::incluiInArray($gender, static::$toMale)) {
+        if (static::foundInFile($gender, 'gender-names-to-male')) {
             return 'MASCULINO';
         }
-        if (static::incluiInArray($gender, static::$toWoman)) {
+        if (static::foundInFile($gender, 'gender-names-to-woman')) {
             return 'FEMININO';
         }
         return $gender;

@@ -2,13 +2,10 @@
 
 namespace Validate;
 
-use Validate\Traits\FakeNameTrait;
 use Carbon\Carbon;
 
 class Birthdate extends Date implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
-
     public static function toDatabase($birthdate)
     {
         return parent::toDatabase($birthdate);

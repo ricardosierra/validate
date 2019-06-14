@@ -2,13 +2,11 @@
 
 namespace Validate;
 
-use Validate\Traits\FakeNameTrait;
 use GuzzleHttp\Client as Http;
 use Exception;
 
 class Cep implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
 
     public static function toDatabase($cep)
     {

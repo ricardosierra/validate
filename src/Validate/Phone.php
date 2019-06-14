@@ -2,11 +2,8 @@
 
 namespace Validate;
 
-use Validate\Traits\FakeNameTrait;
-
 class Phone implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
 
     public static function toDatabase(string $phone)
     {

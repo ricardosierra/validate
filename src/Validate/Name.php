@@ -2,11 +2,12 @@
 
 namespace Validate;
 
-use Validate\Traits\FakeNameTrait;
+use Validate\Traits\BlockStringTrait;
+use Validate\Traits\GetDataTrait;
 
 class Name implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
+    use BlockStringTrait, GetDataTrait;
 
     public static function toDatabase(string $fullName)
     {
@@ -26,11 +27,16 @@ class Name implements \Validate\Contracts\Validate
             return false;
         }
 
-        if (static::incluiInArray($name['full'], static::$notPermit)) {
-            return false;
-        }
-
-        if (static::incluiInArray($name['first'], static::$notPermitInFirst)) {
+        if (self::foundInMultiplesArrays([
+            [
+                $name['full'],
+                self::getListFromFile('black-names')
+            ],
+            [
+                $name['first'],
+                self::getListFromFile('black-first-names')
+            ],
+        ])){
             return false;
         }
 

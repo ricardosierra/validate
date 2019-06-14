@@ -2,11 +2,8 @@
 
 namespace Validate;
 
-use Validate\Traits\FakeNameTrait;
-
 class Number implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
     
     /**
      * Remove Virgulas do Numeral e Add .

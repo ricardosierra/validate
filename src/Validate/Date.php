@@ -3,12 +3,9 @@
 namespace Validate;
 
 use Carbon\Carbon;
-use Validate\Traits\FakeNameTrait;
 
 class Date implements \Validate\Contracts\Validate
 {
-    use FakeNameTrait;
-
     public static function toDatabase($dataOriginal)
     {
         $data = explode('/', $dataOriginal);

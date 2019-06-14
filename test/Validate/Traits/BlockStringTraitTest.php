@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace Validate\Test\Traits;
 
-use Validate\Traits\FakeNameTrait;
+use Validate\Traits\BlockStringTrait;
 use PHPUnit\Framework\TestCase;
 
 class OnlyForTest
 {
-    use FakeNameTrait;
+    use BlockStringTrait;
 }
 
-final class FakeNameTraitTest extends TestCase
+final class BlockStringTraitTest extends TestCase
 {
     /**
      *
@@ -20,6 +20,6 @@ final class FakeNameTraitTest extends TestCase
      */
     public function testIncluiInArray()
     {
-        $this->assertEquals(OnlyForTest::incluiInArray('MASCULINO', ['MASCULINO']), true);
+        $this->assertEquals(OnlyForTest::foundInArray('MASCULINO', ['MASCULINO']), true);
     }
 }
