@@ -34,6 +34,17 @@ This package provides a pure PHP validator for field in differents formats
 \Validate\Name::validate('Teste Sierra'); // False
 ```
 
+### Validando Senhas Comuns
+
+```php
+<?php
+
+\Validate\Password::validate('RHMVbymY45JWar5A'); // True
+\Validate\Password::validate('3?=4dB#%zNGaXH_P'); // True
+\Validate\Password::validate('123456'); // False
+\Validate\Password::validate('Ricardo'); // False
+```
+
 ### Validate Email
 ```php
 <?php
