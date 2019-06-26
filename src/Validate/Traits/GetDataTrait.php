@@ -16,7 +16,7 @@ trait GetDataTrait
      */
     public static function getFileUrl($file)
     {
-        $rootDir = "..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..";
+        $rootDir = DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..";
         return dirname(__FILE__).$rootDir.DIRECTORY_SEPARATOR.$file;
     }
 
