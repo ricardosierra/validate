@@ -1,12 +1,28 @@
 {
     "name": "ricardosierra/validate",
-    "type": "library",
     "description": "Validate is a PHP library that validate and filter data for you.",
-    "keywords": ["validate", "filter", "data"],
+    "type": "library",
+    "keywords": [
+        "sierratecnologia",
+        "validate", "filter", "data"
+    ],
     "license": "MIT",
+    "homepage": "https://sierratecnologia.com/packages/validate/",
+    "support": {
+        "email": "help@sierratecnologia.com.br",
+        "issues": "https://github.com/sierratecnologia/validate/issues",
+        "source": "https://github.com/sierratecnologia/validate",
+        "docs": "https://github.com/sierratecnologia/validate/blob/master/README.md"
+    },
     "authors": [
         {
-            "name": "Ricardo Rebello Sierra"
+            "name": "SierraTecnologia",
+            "homepage": "https://sierratecnologia.com.br",
+            "email": "help@sierratecnologia.com.br"
+        },
+        {
+            "name": "Ricardo Rebello Sierra",
+            "email": "contato@ricardosierra.com.br"
         }
     ],
     "require": {
