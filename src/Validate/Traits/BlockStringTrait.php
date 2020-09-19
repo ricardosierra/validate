@@ -10,10 +10,10 @@ trait BlockStringTrait
     /**
      * Found many strings inside multiples arrays
      *
-     * @param string $blocks
-     * @return bool
+     * @param array $blocks
+     * @return boolean
      */
-    public static function foundInMultiplesArrays($blocks)
+    public static function foundInMultiplesArrays(array $blocks): boolean
     {
         foreach ($blocks as $block) {
             if (static::foundInArray($block[0], $block[1])) {
@@ -30,10 +30,10 @@ trait BlockStringTrait
      * @param array $array
      * @return bool
      */
-    public static function foundInArray($field, $array)
+    public boolean function foundInArray(string $field, array $array): boolean
     {
         foreach ($array as $notPermit) {
-            if(strpos($field, $notPermit) !== false){
+            if (strpos($field, $notPermit) !== false) {
                 return true;
             }
         }

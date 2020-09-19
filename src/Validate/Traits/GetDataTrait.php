@@ -14,7 +14,7 @@ trait GetDataTrait
      * @param string $file
      * @return string
      */
-    public static function getFileUrl($file)
+    public static function getFileUrl(string $file): string
     {
         $rootDir = DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."data";
         return dirname(__FILE__).$rootDir.DIRECTORY_SEPARATOR.$file;
@@ -24,9 +24,9 @@ trait GetDataTrait
      * Return array from file
      *
      * @param string $file
-     * @return array
+     * @return array|false
      */
-    public static function getListFromFile($file)
+    public static function getListFromFile(string $file)
     {
         return file(self::getFileUrl($file));
     }
@@ -38,11 +38,13 @@ trait GetDataTrait
      * @param string $file
      * @return bool
      */
-    public static function foundInFile($string, $file)
+    public static function foundInFile(string $string, string $file): boolean
     {
-        $fileHandle = fopen(self::getFileUrl($file), "r");
+        if (!$fileHandle = fopen(self::getFileUrl($file), "r")) {
+            return false;
+        }
         while (!feof($fileHandle)) {
-            if (trim($string) === trim(fgets($fileHandle))){
+            if (trim($string) === trim(fgets($fileHandle))) {
                 return true;
             }
         }

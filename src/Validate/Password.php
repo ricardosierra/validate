@@ -2,13 +2,14 @@
 
 namespace Validate;
 
+use Exception;
 use Validate\Traits\BlockStringTrait;
 use Validate\Traits\GetDataTrait;
 
 /**
  * I created this validator just to avoid common passwords, you should not use to store passwords.
  * Not before you improve that shit!
- * 
+ *
  * Criei esse validator apenas para evitar senhas comuns, você não deveria usar para armazenar senhas.
  * Não antes de melhorar essa merda!
  */
@@ -42,14 +43,13 @@ class Password implements \Validate\Contracts\Validate
 
     /**
      * Verify if client use commoms passwords.
-     * 
+     *
      * @todo Create validate for password force
      *
      * @param string $password
-     * @param integer $force
-     * @return void
+     * @return boolean
      */
-    public static function validate($password, $force = 0)
+    public static function validate(string $password): boolean
     {
         if (self::foundInMultiplesArrays([
             [
@@ -64,7 +64,7 @@ class Password implements \Validate\Contracts\Validate
                 $password,
                 self::getListFromFile('black-first-names')
             ],
-        ])){
+        ])) {
             return false;
         }
 
@@ -72,7 +72,7 @@ class Password implements \Validate\Contracts\Validate
     }
 
     /**
-     * Verify 
+     * Verify
      *
      * @param string $fromDatabase
      * @param string $fromUser
@@ -81,7 +81,6 @@ class Password implements \Validate\Contracts\Validate
     public static function isSame(string $fromDatabase, string $fromUser)
     {
         return (self::toDatabase($fromDatabase)===self::toDatabase($fromUser));
-
     }
 
     public static function generate(
@@ -98,6 +97,4 @@ class Password implements \Validate\Contracts\Validate
         }
         return $str;
     }
-
-
 }
