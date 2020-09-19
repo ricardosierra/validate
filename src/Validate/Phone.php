@@ -8,7 +8,7 @@ class Phone implements \Validate\Contracts\Validate
     public static function toDatabase(string $phone)
     {
         $phone = preg_replace('/[^0-9]/', '', $phone);
-        if (substr((string) $phone,0,2)=='55') {
+        if (substr((string) $phone, 0, 2)=='55') {
             return $phone;
         }
         if (empty($phone) || $phone=='55') {

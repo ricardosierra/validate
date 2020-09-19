@@ -10,10 +10,11 @@ class Gender implements \Validate\Contracts\Validate
 
     public static function toDatabase($gender)
     {
-        return substr(((string) self::filter(strtoupper(preg_replace('/[^A-z]/', '',$gender)))), 0, 1);
+        return substr(((string) self::filter(strtoupper(preg_replace('/[^A-z]/', '', $gender)))), 0, 1);
     }
 
-    public static function filter($gender) {
+    public static function filter($gender)
+    {
         if (static::foundInFile($gender, 'gender-names-to-male')) {
             return 'MASCULINO';
         }

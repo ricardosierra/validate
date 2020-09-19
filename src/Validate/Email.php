@@ -14,24 +14,28 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * SMTP port number
+     *
      * @var int
      */
     protected $port = 25;
 
     /**
      * Email address for request
+     *
      * @var string
      */
     protected $from = 'root@localhost';
 
     /**
      * The connection timeout, in seconds.
+     *
      * @var int
      */
     protected $max_connection_timeout = 30;
 
     /**
      * Timeout value on stream, in seconds.
+     *
      * @var int
      */
     protected $stream_timeout = 5;
@@ -39,26 +43,30 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Wait timeout on stream, in seconds.
      * * 0 - not wait
+     *
      * @var int
      */
     protected $stream_timeout_wait = 0;
 
     /**
      * Whether to throw exceptions for errors.
-     * @type boolean
+     *
+     * @type   boolean
      * @access protected
      */
     protected $exceptions = false;
 
     /**
      * The number of errors encountered.
-     * @type integer
+     *
+     * @type   integer
      * @access protected
      */
     protected $error_count = 0;
 
     /**
      * class debug output mode.
+     *
      * @type boolean
      */
     public $Debug = false;
@@ -69,6 +77,7 @@ class Email implements \Validate\Contracts\Validate
      * * `echo` Output plain-text as-is, appropriate for CLI
      * * `html` Output escaped, line breaks converted to `<br>`, appropriate for browser output
      * * `log` Output to error log as configured in php.ini
+     *
      * @type string
      */
     public $Debugoutput = 'echo';
@@ -80,12 +89,14 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Holds the most recent error message.
+     *
      * @type string
      */
     public $ErrorInfo = '';
 
     /**
      * Constructor.
+     *
      * @param boolean $exceptions Should we throw external exceptions?
      */
     public function __construct($exceptions = false)
@@ -100,7 +111,8 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Validate email address.
-     * @param string $email
+     *
+     * @param  string $email
      * @return boolean True if valid.
      */
     public static function validate(string $email): boolean
@@ -112,7 +124,8 @@ class Email implements \Validate\Contracts\Validate
         $emailAddresse = explode("@", trim($email));
 
 
-        if (self::foundInMultiplesArrays([
+        if (self::foundInMultiplesArrays(
+            [
             [
                 $emailAddresse[0],
                 self::getListFromFile('black-names')
@@ -121,7 +134,9 @@ class Email implements \Validate\Contracts\Validate
                 $emailAddresse[0],
                 self::getListFromFile('black-first-names')
             ],
-        ])) {
+            ]
+        )
+        ) {
             return false;
         }
 
@@ -134,7 +149,8 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Email to Database
-     * @param string $email
+     *
+     * @param  string $email
      * @return string Email
      */
     public static function toDatabase(string $email): string
@@ -144,7 +160,8 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Email to User
-     * @param string $email
+     *
+     * @param  string $email
      * @return string Email
      */
     public static function toUser(string $email): string
@@ -154,7 +171,8 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Break Email
-     * @param string $email
+     *
+     * @param  string $email
      * @return array Email
      */
     public static function break(string $email): array
@@ -167,7 +185,8 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Set email address for SMTP request
-     * @param string $email Email address
+     *
+     * @param  string $email Email address
      * @return void
      */
     public function setEmailFrom(string $email): void
@@ -184,6 +203,7 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Set connection timeout, in seconds.
+     *
      * @param int $seconds
      */
     public function setConnectionTimeout($seconds): void
@@ -195,6 +215,7 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Sets the timeout value on stream, expressed in the seconds
+     *
      * @param int $seconds
      */
     public function setStreamTimeout($seconds): void
@@ -213,7 +234,8 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Get array of MX records for host. Sort by weight information.
-     * @param string $hostname The Internet host name.
+     *
+     * @param  string $hostname The Internet host name.
      * @return array Array of the MX records found.
      */
     public function getMXrecords(string $hostname): array
@@ -229,6 +251,7 @@ class Email implements \Validate\Contracts\Validate
         /**
          * Add A-record as last chance (e.g. if no MX record is there).
          * Thanks Nicht Lieb.
+         *
          * @link http://www.faqs.org/rfcs/rfc2821.html RFC 2821 - Simple Mail Transfer Protocol
          */
         if (empty($mxhosts)) {
@@ -239,8 +262,9 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Parses input string to array(0=>user, 1=>domain)
-     * @param string $email
-     * @param boolean $only_domain
+     *
+     * @param  string  $email
+     * @param  boolean $only_domain
      * @return string|array
      * @access private
      */
@@ -252,8 +276,9 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Add an error message to the error container.
+     *
      * @access protected
-     * @param string $msg
+     * @param  string $msg
      * @return void
      */
     protected function set_error($msg)
@@ -264,6 +289,7 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Check if an error occurred.
+     *
      * @access public
      * @return boolean True if an error did occur.
      */
@@ -275,8 +301,9 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Output debugging info
      * Only generates output if debug output is enabled
-     * @see verifyEmail::$Debugoutput
-     * @see verifyEmail::$Debug
+     *
+     * @see   verifyEmail::$Debugoutput
+     * @see   verifyEmail::$Debug
      * @param string $str
      */
     protected function edebug($str)
@@ -285,34 +312,35 @@ class Email implements \Validate\Contracts\Validate
             return;
         }
         switch ($this->Debugoutput) {
-            case 'log':
-                //Don't output, just log
-                error_log($str);
-                break;
-            case 'html':
-                //Cleans up output a bit for a better looking, HTML-safe output
-                echo htmlentities(
-                    preg_replace('/[\r\n]+/', '', $str),
-                    ENT_QUOTES,
-                    'UTF-8'
-                )
-                . "<br>\n";
-                break;
-            case 'echo':
-            default:
-                //Normalize line breaks
-                $str = preg_replace('/(\r\n|\r|\n)/ms', "\n", $str);
-                echo gmdate('Y-m-d H:i:s') . "\t" . str_replace(
-                    "\n",
-                    "\n \t ",
-                    trim($str)
-                ) . "\n";
+        case 'log':
+            //Don't output, just log
+            error_log($str);
+            break;
+        case 'html':
+            //Cleans up output a bit for a better looking, HTML-safe output
+            echo htmlentities(
+                preg_replace('/[\r\n]+/', '', $str),
+                ENT_QUOTES,
+                'UTF-8'
+            )
+            . "<br>\n";
+            break;
+        case 'echo':
+        default:
+            //Normalize line breaks
+            $str = preg_replace('/(\r\n|\r|\n)/ms', "\n", $str);
+            echo gmdate('Y-m-d H:i:s') . "\t" . str_replace(
+                "\n",
+                "\n \t ",
+                trim($str)
+            ) . "\n";
         }
     }
 
     /**
      * Validate email
-     * @param string $email Email address
+     *
+     * @param  string $email Email address
      * @return boolean True if the valid email also exist
      */
     public function check(string $email): boolean
@@ -387,40 +415,41 @@ class Email implements \Validate\Contracts\Validate
         
         $code = !empty($code2)?$code2:$code;
         switch ($code) {
-            case '250':
+        case '250':
             /**
              * http://www.ietf.org/rfc/rfc0821.txt
              * 250 Requested mail action okay, completed
              * email address was accepted
              */
             // no break
-            case '450':
-            case '451':
-            case '452':
-                /**
-                 * http://www.ietf.org/rfc/rfc0821.txt
-                 * 450 Requested action not taken: the remote mail server
-                 * does not want to accept mail from your server for
-                 * some reason (IP address, blacklisting, etc..)
-                 * Thanks Nicht Lieb.
-                 * 451 Requested action aborted: local error in processing
-                 * 452 Requested action not taken: insufficient system storage
-                 * email address was greylisted (or some temporary error occured on the MTA)
-                 * i believe that e-mail exists
-                 */
-                return true;
-            case '550':
-                return false;
-            default:
-                return false;
+        case '450':
+        case '451':
+        case '452':
+            /**
+             * http://www.ietf.org/rfc/rfc0821.txt
+             * 450 Requested action not taken: the remote mail server
+             * does not want to accept mail from your server for
+             * some reason (IP address, blacklisting, etc..)
+             * Thanks Nicht Lieb.
+             * 451 Requested action aborted: local error in processing
+             * 452 Requested action not taken: insufficient system storage
+             * email address was greylisted (or some temporary error occured on the MTA)
+             * i believe that e-mail exists
+             */
+            return true;
+        case '550':
+            return false;
+        default:
+            return false;
         }
     }
 
     /**
      * writes the contents of string to the file stream pointed to by handle
      * If an error occurs, returns FALSE.
+     *
      * @access protected
-     * @param string $string The string that is to be written
+     * @param  string $string The string that is to be written
      * @return string Returns a result code, as an integer.
      */
     protected function _streamQuery($query)
@@ -432,6 +461,7 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Reads all the line long the answer and analyze it.
      * If an error occurs, returns FALSE
+     *
      * @access protected
      * @return string Response
      */
@@ -458,7 +488,8 @@ class Email implements \Validate\Contracts\Validate
 
     /**
      * Get Response code from Response
-     * @param string $str
+     *
+     * @param  string $str
      * @return string
      */
     protected function _streamCode(string $str): string

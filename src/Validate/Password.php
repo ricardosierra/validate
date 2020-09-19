@@ -20,7 +20,7 @@ class Password implements \Validate\Contracts\Validate
     /**
      * Create hash for store password
      *
-     * @param string $password
+     * @param  string $password
      * @return string
      */
     public static function toDatabase(string $password)
@@ -31,7 +31,7 @@ class Password implements \Validate\Contracts\Validate
     /**
      * Never use this function
      *
-     * @param string $password
+     * @param  string $password
      * @return void
      */
     public static function toUser($password)
@@ -46,12 +46,13 @@ class Password implements \Validate\Contracts\Validate
      *
      * @todo Create validate for password force
      *
-     * @param string $password
+     * @param  string $password
      * @return boolean
      */
     public static function validate(string $password): boolean
     {
-        if (self::foundInMultiplesArrays([
+        if (self::foundInMultiplesArrays(
+            [
             [
                 $password,
                 self::getListFromFile('black-passwords')
@@ -64,7 +65,9 @@ class Password implements \Validate\Contracts\Validate
                 $password,
                 self::getListFromFile('black-first-names')
             ],
-        ])) {
+            ]
+        )
+        ) {
             return false;
         }
 
@@ -74,8 +77,8 @@ class Password implements \Validate\Contracts\Validate
     /**
      * Verify
      *
-     * @param string $fromDatabase
-     * @param string $fromUser
+     * @param  string $fromDatabase
+     * @param  string $fromUser
      * @return boolean
      */
     public static function isSame(string $fromDatabase, string $fromUser)

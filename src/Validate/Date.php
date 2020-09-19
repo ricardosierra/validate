@@ -9,8 +9,8 @@ class Date implements \Validate\Contracts\Validate
     public static function toDatabase($dataOriginal)
     {
         $data = explode('/', $dataOriginal);
-        if (isset($data[2])){
-            if($data[1]>12){
+        if (isset($data[2])) {
+            if($data[1]>12) {
                 return $data[2] .'-'. $data[0] .'-'. $data[1];
             }            
             return $data[2] .'-'. $data[1] .'-'. $data[0];
@@ -59,7 +59,7 @@ class Date implements \Validate\Contracts\Validate
         if ($year>99) {
             return $year;
         }
-        if ($year>50){
+        if ($year>50) {
             return 1900+$year;
         }
         return 2000+$year;

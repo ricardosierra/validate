@@ -11,7 +11,7 @@ trait GetDataTrait
     /**
      * Get full file url
      *
-     * @param string $file
+     * @param  string $file
      * @return string
      */
     public static function getFileUrl(string $file): string
@@ -23,7 +23,7 @@ trait GetDataTrait
     /**
      * Return array from file
      *
-     * @param string $file
+     * @param  string $file
      * @return array|false
      */
     public static function getListFromFile(string $file)
@@ -34,8 +34,8 @@ trait GetDataTrait
     /**
      * Found string inside file
      *
-     * @param string $string
-     * @param string $file
+     * @param  string $string
+     * @param  string $file
      * @return bool
      */
     public static function foundInFile(string $string, string $file): boolean

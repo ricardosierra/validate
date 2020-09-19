@@ -27,7 +27,8 @@ class Name implements \Validate\Contracts\Validate
             return false;
         }
 
-        if (self::foundInMultiplesArrays([
+        if (self::foundInMultiplesArrays(
+            [
             [
                 $name['full'],
                 self::getListFromFile('black-names')
@@ -36,7 +37,9 @@ class Name implements \Validate\Contracts\Validate
                 $name['first'],
                 self::getListFromFile('black-first-names')
             ],
-        ])){
+            ]
+        )
+        ) {
             return false;
         }
 

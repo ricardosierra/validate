@@ -260,7 +260,6 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
-     *
      */
     public static function urlRemoveDotSegments($path)
     {
@@ -283,8 +282,9 @@ class Url implements \Validate\Contracts\Validate
         }
 
         // compare last multi-byte character against '/'
-        if ($outPath != '/' &&
-            (mb_strlen($path)-1) == mb_strrpos($path, '/')) {
+        if ($outPath != '/' 
+            && (mb_strlen($path)-1) == mb_strrpos($path, '/')
+        ) {
             $outPath .= '/';
         }
 
@@ -296,7 +296,6 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
-     *
      */
     public static function splitUrl($url, $decode=true)
     {
@@ -412,7 +411,6 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
-     *
      */
     public static function joinUrl($parts, $encode=true)
     {
@@ -423,8 +421,9 @@ class Url implements \Validate\Contracts\Validate
             if (isset($parts['pass'])) {
                 $parts['pass']     = rawurlencode($parts['pass']);
             }
-            if (isset($parts['host']) &&
-                !preg_match('!^(\[[\da-f.:]+\]])|([\da-f.:]+)$!ui', $parts['host'])) {
+            if (isset($parts['host']) 
+                && !preg_match('!^(\[[\da-f.:]+\]])|([\da-f.:]+)$!ui', $parts['host'])
+            ) {
                 $parts['host']     = rawurlencode($parts['host']);
             }
             if (!empty($parts['path'])) {

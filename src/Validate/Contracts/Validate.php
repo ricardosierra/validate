@@ -7,7 +7,7 @@ interface Validate
     /**
      * Get a lock instance.
      *
-     * @param  string  $field
+     * @param  string $field
      * @return string
      */
     public static function toDatabase(string $field);
@@ -15,7 +15,7 @@ interface Validate
     /**
      * Restore a lock instance using the owner identifier.
      *
-     * @param  string  $field
+     * @param  string $field
      * @return string
      */
     public static function toUser($field);
@@ -23,7 +23,7 @@ interface Validate
     /**
      * Restore a lock instance using the owner identifier.
      *
-     * @param  string  $field
+     * @param  string $field
      * @return bool
      */
     public static function validate($field);

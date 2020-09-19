@@ -17,7 +17,7 @@ trait MaskTrait
             return false;
         }
         while($i < $maskLen) {
-            if (strtoupper($mask[$i])!=='X' && strtoupper($mask[$i])!=='#'){
+            if (strtoupper($mask[$i])!=='X' && strtoupper($mask[$i])!=='#') {
                 if ($mask[$i]!==$number[$i]) {
                     return false;
                 }

@@ -10,7 +10,7 @@ trait BlockStringTrait
     /**
      * Found many strings inside multiples arrays
      *
-     * @param array $blocks
+     * @param  array $blocks
      * @return boolean
      */
     public static function foundInMultiplesArrays(array $blocks): boolean
@@ -26,8 +26,8 @@ trait BlockStringTrait
     /**
      * Found string inside array
      *
-     * @param string $field
-     * @param array $array
+     * @param  string $field
+     * @param  array $array
      * @return bool
      */
     public boolean function foundInArray(string $field, array $array): boolean

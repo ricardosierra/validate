@@ -24,7 +24,7 @@ class CreditCard extends \Faker\Provider\Payment implements \Validate\Contracts\
         $found = false;
         foreach (self::$cardParams as $masks){
             foreach ($masks as $mask){
-                if (self::maskIsValidate($creditCardNumber, $mask)){
+                if (self::maskIsValidate($creditCardNumber, $mask)) {
                     $found = true;
                 }
             }

@@ -11,7 +11,7 @@ class Cpf implements \Validate\Contracts\Validate
     /**
      * Get User name from user and convert to Database
      *
-     * @param string $cpf
+     * @param  string $cpf
      * @return string
      */
     public static function toDatabase($cpf)
@@ -23,7 +23,7 @@ class Cpf implements \Validate\Contracts\Validate
     /**
      * Get User name from database and convert to User Format
      *
-     * @param string $cpf
+     * @param  string $cpf
      * @return string
      */
     public static function toUser($cpf)
@@ -34,7 +34,7 @@ class Cpf implements \Validate\Contracts\Validate
     /**
      * Validate if Cpf is Valid
      *
-     * @param string $cpf
+     * @param  string $cpf
      * @return bool
      */
     public static function validate($cpf)
@@ -71,8 +71,8 @@ class Cpf implements \Validate\Contracts\Validate
     /**
      * Verify if Cpf is the same
      *
-     * @param string $to
-     * @param string $from
+     * @param  string $to
+     * @param  string $from
      * @return boolean
      */
     public static function isSame(string $to, string $from)

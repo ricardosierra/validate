@@ -13,12 +13,12 @@ class Birthdate extends Date implements \Validate\Contracts\Validate
 
     public static function validate($birthdate)
     {   
-        if (!parent::validate($birthdate)){
+        if (!parent::validate($birthdate)) {
             return false;
         }
 
         $birthdate = Carbon::createFromFormat('Y-m-d', self::toDatabase($birthdate));
-        if ($birthdate->greaterThan(Carbon::now())){
+        if ($birthdate->greaterThan(Carbon::now())) {
             return false;
         }
 
