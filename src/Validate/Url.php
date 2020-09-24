@@ -297,7 +297,7 @@ class Url implements \Validate\Contracts\Validate
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
      */
-    public static function splitUrl($url, $decode=true)
+    public static function splitUrl(string $url, $decode=true)
     {
         $parts = [];
         $m = [];

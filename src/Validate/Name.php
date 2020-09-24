@@ -50,7 +50,7 @@ class Name implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function break($fullName)
+    public static function break(string $fullName)
     {
         $fullName = self::toDatabase($fullName);
         $nomes = explode(" ", trim($fullName));

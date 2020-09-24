@@ -452,7 +452,7 @@ class Email implements \Validate\Contracts\Validate
      * @param  string $string The string that is to be written
      * @return string Returns a result code, as an integer.
      */
-    protected function _streamQuery($query)
+    protected function _streamQuery(string $query)
     {
         $this->edebug($query);
         return stream_socket_sendto($this->stream, $query . self::CRLF);

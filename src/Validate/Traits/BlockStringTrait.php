@@ -30,7 +30,7 @@ trait BlockStringTrait
      * @param  array $array
      * @return bool
      */
-    public boolean function foundInArray(string $field, array $array): boolean
+    public static function foundInArray(string $field, array $array): boolean
     {
         foreach ($array as $notPermit) {
             if (strpos($field, $notPermit) !== false) {
