@@ -23,8 +23,11 @@ trait GetDataTrait
     /**
      * Return array from file
      *
-     * @param  string $file
-     * @return array|false
+     * @param string $file
+     *
+     * @return false|string[]
+     *
+     * @psalm-return false|list<string>
      */
     public static function getListFromFile(string $file)
     {
@@ -34,9 +37,10 @@ trait GetDataTrait
     /**
      * Found string inside file
      *
-     * @param  string $string
-     * @param  string $file
-     * @return bool
+     * @param string $string
+     * @param string $file
+     *
+     * @return boolean
      */
     public static function foundInFile(string $string, string $file): boolean
     {

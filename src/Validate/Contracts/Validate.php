@@ -16,14 +16,6 @@ interface Validate
      * Restore a lock instance using the owner identifier.
      *
      * @param  string $field
-     * @return string
-     */
-    public static function toUser($field);
-
-    /**
-     * Restore a lock instance using the owner identifier.
-     *
-     * @param  string $field
      * @return bool
      */
     public static function validate($field);

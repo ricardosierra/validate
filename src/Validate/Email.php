@@ -10,6 +10,9 @@ class Email implements \Validate\Contracts\Validate
 {
     use BlockStringTrait, GetDataTrait;
 
+    /**
+     * @var closed-resource|false|resource
+     */
     protected $stream = false;
 
     /**
@@ -51,10 +54,13 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Whether to throw exceptions for errors.
      *
-     * @type   boolean
+     * @type boolean
+     *
      * @access protected
+     *
+     * @var bool
      */
-    protected $exceptions = false;
+    protected bool $exceptions = false;
 
     /**
      * The number of errors encountered.
@@ -68,8 +74,10 @@ class Email implements \Validate\Contracts\Validate
      * class debug output mode.
      *
      * @type boolean
+     *
+     * @var false
      */
-    public $Debug = false;
+    public bool $Debug = false;
 
     /**
      * How to handle debug output.
@@ -79,8 +87,10 @@ class Email implements \Validate\Contracts\Validate
      * * `log` Output to error log as configured in php.ini
      *
      * @type string
+     *
+     * @var string
      */
-    public $Debugoutput = 'echo';
+    public string $Debugoutput = 'echo';
 
     /**
      * SMTP RFC standard line ending.
@@ -91,6 +101,8 @@ class Email implements \Validate\Contracts\Validate
      * Holds the most recent error message.
      *
      * @type string
+     *
+     * @var string
      */
     public $ErrorInfo = '';
 
@@ -104,7 +116,7 @@ class Email implements \Validate\Contracts\Validate
         $this->exceptions = (boolean) $exceptions;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }
@@ -112,8 +124,9 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Validate email address.
      *
-     * @param  string $email
-     * @return boolean True if valid.
+     * @param string $email
+     *
+     * @return boolean
      */
     public static function validate(string $email): boolean
     {
@@ -172,8 +185,11 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Break Email
      *
-     * @param  string $email
-     * @return array Email
+     * @param string $email
+     *
+     * @return (mixed|string)[] Email
+     *
+     * @psalm-return array{address: string, domain: string}
      */
     public static function break(string $email): array
     {
@@ -235,8 +251,11 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Get array of MX records for host. Sort by weight information.
      *
-     * @param  string $hostname The Internet host name.
-     * @return array Array of the MX records found.
+     * @param string $hostname The Internet host name.
+     *
+     * @return (mixed|string)[] Array of the MX records found.
+     *
+     * @psalm-return array<array-key, mixed|string>
      */
     public function getMXrecords(string $hostname): array
     {
@@ -263,10 +282,14 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Parses input string to array(0=>user, 1=>domain)
      *
-     * @param  string  $email
-     * @param  boolean $only_domain
-     * @return string|array
+     * @param string  $email
+     * @param boolean $only_domain
+     *
+     * @return (float|int|string)[]|float|int|string
+     *
      * @access private
+     *
+     * @psalm-return array{0: float|int|string, 1: float|int|string}|float|int|string
      */
     private static function parse_email(string $email, boolean $only_domain = true)
     {
@@ -291,7 +314,8 @@ class Email implements \Validate\Contracts\Validate
      * Check if an error occurred.
      *
      * @access public
-     * @return boolean True if an error did occur.
+     *
+     * @return boolean
      */
     public function isError(): boolean
     {
@@ -302,9 +326,12 @@ class Email implements \Validate\Contracts\Validate
      * Output debugging info
      * Only generates output if debug output is enabled
      *
-     * @see   verifyEmail::$Debugoutput
-     * @see   verifyEmail::$Debug
+     * @see verifyEmail::$Debugoutput
+     * @see verifyEmail::$Debug
+     *
      * @param string $str
+     *
+     * @return void
      */
     protected function edebug($str)
     {
@@ -340,12 +367,12 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Validate email
      *
-     * @param  string $email Email address
-     * @return boolean True if the valid email also exist
+     * @param string $email Email address
+     *
+     * @return boolean
      */
     public function check(string $email): boolean
     {
-        $result = false;
 
         if (!self::validate($email)) {
             $this->set_error("{$email} incorrect e-mail");
@@ -449,10 +476,12 @@ class Email implements \Validate\Contracts\Validate
      * If an error occurs, returns FALSE.
      *
      * @access protected
-     * @param  string $string The string that is to be written
-     * @return string Returns a result code, as an integer.
+     *
+     * @param string $string The string that is to be written
+     *
+     * @return int Returns a result code, as an integer.
      */
-    protected function _streamQuery(string $query)
+    protected function _streamQuery(string $query): int
     {
         $this->edebug($query);
         return stream_socket_sendto($this->stream, $query . self::CRLF);
@@ -489,10 +518,11 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Get Response code from Response
      *
-     * @param  string $str
-     * @return string
+     * @param string $str
+     *
+     * @return false|string
      */
-    protected function _streamCode(string $str): string
+    protected function _streamCode(string $str)
     {
         preg_match('/^(?<code>[0-9]{3})(\s|-)(.*)$/ims', $str, $matches);
         $code = isset($matches['code']) ? $matches['code'] : false;

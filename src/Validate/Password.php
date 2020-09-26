@@ -31,8 +31,9 @@ class Password implements \Validate\Contracts\Validate
     /**
      * Never use this function
      *
-     * @param  string $password
-     * @return void
+     * @param string $password
+     *
+     * @return null
      */
     public static function toUser($password)
     {
@@ -89,7 +90,7 @@ class Password implements \Validate\Contracts\Validate
     public static function generate(
         $length = 8,
         $keyspace = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%'
-    ) {
+    ): string {
         $str = '';
         $max = mb_strlen($keyspace, '8bit') - 1;
         if ($max < 1) {

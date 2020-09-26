@@ -48,7 +48,12 @@ class Phone implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function break(string $phone)
+    /**
+     * @return (false|mixed|string)[]
+     *
+     * @psalm-return array{country: false|string, region: false|string, number: false|string}
+     */
+    public static function break(string $phone): array
     {
         $phone = static::toDatabase($phone);
         $data['country'] = '55';
@@ -68,7 +73,7 @@ class Phone implements \Validate\Contracts\Validate
         return $data;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

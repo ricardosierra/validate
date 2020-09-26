@@ -25,6 +25,9 @@ class Birthdate extends Date implements \Validate\Contracts\Validate
         return true;
     }
 
+    /**
+     * @return bool
+     */
     public static function isSame(string $to, string $from)
     {
         return (self::toDatabase($to)===self::toDatabase($from));

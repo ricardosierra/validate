@@ -11,6 +11,9 @@ class Url implements \Validate\Contracts\Validate
         return $url;
     }
 
+    /**
+     * @return string
+     */
     public static function toUser($url)
     {
         return 'https://'.$url;
@@ -29,7 +32,7 @@ class Url implements \Validate\Contracts\Validate
         return self::splitUrl($url);
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }
@@ -260,8 +263,10 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
+     *
+     * @return string
      */
-    public static function urlRemoveDotSegments($path)
+    public static function urlRemoveDotSegments($path): string
     {
         // multi-byte character explode
         $inSegs  = preg_split('!/!u', $path);
@@ -296,6 +301,10 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
+     *
+     * @return false|string[]
+     *
+     * @psalm-return array{scheme?: string, user?: string, pass?: string, host?: string, port?: string, path?: string, query?: string, fragment?: string}|false
      */
     public static function splitUrl(string $url, $decode=true)
     {
@@ -411,8 +420,10 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
+     *
+     * @return string
      */
-    public static function joinUrl($parts, $encode=true)
+    public static function joinUrl($parts, $encode=true): string
     {
         if ($encode) {
             if (isset($parts['user'])) {

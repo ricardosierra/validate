@@ -13,7 +13,7 @@ class Gender implements \Validate\Contracts\Validate
         return substr(((string) self::filter(strtoupper(preg_replace('/[^A-z]/', '', $gender)))), 0, 1);
     }
 
-    public static function filter(string $gender)
+    public static function filter(string $gender): string
     {
         if (static::foundInFile($gender, 'gender-names-to-male')) {
             return 'MASCULINO';
@@ -24,6 +24,9 @@ class Gender implements \Validate\Contracts\Validate
         return $gender;
     }
 
+    /**
+     * @return string
+     */
     public static function toUser($gender)
     {
         if($gender == 'M') {
@@ -48,7 +51,7 @@ class Gender implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

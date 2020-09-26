@@ -32,7 +32,7 @@ class CreditCard extends \Faker\Provider\Payment implements \Validate\Contracts\
         return $found;
     }
 
-    public static function expirationIsValid($mes, $ano)
+    public static function expirationIsValid($mes, $ano): bool
     {
         if ((int) Date::yearToDatabase($ano) < (int) Carbon::now()->year) {
             return false;
@@ -55,7 +55,7 @@ class CreditCard extends \Faker\Provider\Payment implements \Validate\Contracts\
         return Date::yearToDatabase($year);
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

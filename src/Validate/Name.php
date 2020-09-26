@@ -50,7 +50,12 @@ class Name implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function break(string $fullName)
+    /**
+     * @return (int|string|string[])[]
+     *
+     * @psalm-return array{first: string, names: non-empty-list<string>, full: string, last: string, sobrenomes: int}
+     */
+    public static function break(string $fullName): array
     {
         $fullName = self::toDatabase($fullName);
         $nomes = explode(" ", trim($fullName));
@@ -63,7 +68,7 @@ class Name implements \Validate\Contracts\Validate
         ];
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         $toBreak = self::break($to);
         $fromBreak = self::break($from);
