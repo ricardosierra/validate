@@ -27,7 +27,7 @@ trait BlockStringTrait
      * Found string inside array
      *
      * @param  string $field
-     * @param  array $array
+     * @param  array  $array
      * @return bool
      */
     public static function foundInArray(string $field, array $array): boolean
