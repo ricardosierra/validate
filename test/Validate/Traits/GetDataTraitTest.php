@@ -6,12 +6,20 @@ namespace Validate\Test\Traits;
 use Validate\Traits\GetDataTrait;
 use PHPUnit\Framework\TestCase;
 
-class OnlyForTest
+class OnlyForTestGetData
 {
     use GetDataTrait;
 }
 
 final class GetDataTraitTest extends TestCase
 {
-    
+    /**
+     * @todo Falta Fazzer
+     * @group fast
+     * @return void
+     */
+    public function testIncluiInArray()
+    {
+        // $this->assertEquals(OnlyForTestGetData::foundInArray('MASCULINO', ['MASCULINO']), true);
+    }
 }

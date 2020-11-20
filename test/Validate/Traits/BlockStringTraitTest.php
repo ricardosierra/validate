@@ -6,7 +6,7 @@ namespace Validate\Test\Traits;
 use Validate\Traits\BlockStringTrait;
 use PHPUnit\Framework\TestCase;
 
-class OnlyForTest
+class OnlyForTestBlockString
 {
     use BlockStringTrait;
 }
@@ -20,6 +20,6 @@ final class BlockStringTraitTest extends TestCase
      */
     public function testIncluiInArray()
     {
-        $this->assertEquals(OnlyForTest::foundInArray('MASCULINO', ['MASCULINO']), true);
+        $this->assertEquals(OnlyForTestBlockString::foundInArray('MASCULINO', ['MASCULINO']), true);
     }
 }
