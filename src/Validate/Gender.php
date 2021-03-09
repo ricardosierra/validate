@@ -8,7 +8,7 @@ class Gender implements \Validate\Contracts\Validate
 {
     use GetDataTrait;
 
-    public static function toDatabase($gender)
+    public static function toDatabase(string $gender)
     {
         return substr(((string) self::filter(strtoupper(preg_replace('/[^A-z]/', '', $gender)))), 0, 1);
     }
@@ -37,7 +37,7 @@ class Gender implements \Validate\Contracts\Validate
         return 'Unissex';
     }
 
-    public static function validate($gender)
+    public static function validate($gender): bool
     {
         $gender = self::toDatabase($gender);
 
@@ -48,7 +48,7 @@ class Gender implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

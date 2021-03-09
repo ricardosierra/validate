@@ -8,7 +8,7 @@ use Exception;
 class Cep implements \Validate\Contracts\Validate
 {
 
-    public static function toDatabase($cep)
+    public static function toDatabase(string $cep)
     {
         return preg_replace('/[^0-9]/', '', trim($cep));
     }
@@ -18,7 +18,7 @@ class Cep implements \Validate\Contracts\Validate
         return $cep;
     }
 
-    public static function validate($cep)
+    public static function validate($cep): bool
     {
         if (preg_match('/[0-9]{2,2}([.]?)[0-9]{3,3}([- ]?)[0-9]{3}$/', $cep) == 0 ) {            
             return false;
@@ -40,7 +40,7 @@ class Cep implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

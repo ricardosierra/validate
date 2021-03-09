@@ -25,7 +25,7 @@ class Phone implements \Validate\Contracts\Validate
         return $phone;
     }
 
-    public static function validate($phoneNumber)
+    public static function validate($phoneNumber): bool
     {
         $phone = self::break($phoneNumber);
 
@@ -68,7 +68,7 @@ class Phone implements \Validate\Contracts\Validate
         return $data;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

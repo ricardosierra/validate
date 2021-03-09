@@ -14,7 +14,7 @@ class Cpf implements \Validate\Contracts\Validate
      * @param  string $cpf
      * @return string
      */
-    public static function toDatabase($cpf)
+    public static function toDatabase(string $cpf)
     {
         $cpf = preg_replace("/[^0-9]/", "", $cpf);
         return str_pad($cpf, 11, '0', STR_PAD_LEFT);
@@ -37,7 +37,7 @@ class Cpf implements \Validate\Contracts\Validate
      * @param  string $cpf
      * @return bool
      */
-    public static function validate($cpf)
+    public static function validate($cpf): bool
     {
         // Delete not Numbers || Elimina possivel mascara
         $cpf = self::toDatabase($cpf);
@@ -75,7 +75,7 @@ class Cpf implements \Validate\Contracts\Validate
      * @param  string $from
      * @return boolean
      */
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

@@ -104,7 +104,7 @@ class Email implements \Validate\Contracts\Validate
         $this->exceptions = (boolean) $exceptions;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }
@@ -115,7 +115,7 @@ class Email implements \Validate\Contracts\Validate
      * @param  string $email
      * @return boolean True if valid.
      */
-    public static function validate(string $email): boolean
+    public static function validate($email): bool
     {
         if ((boolean) filter_var($email, FILTER_VALIDATE_EMAIL)===false) {
             return false;
@@ -153,7 +153,7 @@ class Email implements \Validate\Contracts\Validate
      * @param  string $email
      * @return string Email
      */
-    public static function toDatabase(string $email): string
+    public static function toDatabase(string $email)
     {
         return $email;
     }
@@ -164,7 +164,7 @@ class Email implements \Validate\Contracts\Validate
      * @param  string $email
      * @return string Email
      */
-    public static function toUser(string $email): string
+    public static function toUser($email)
     {
         return $email;
     }
@@ -268,7 +268,7 @@ class Email implements \Validate\Contracts\Validate
      * @return string|array
      * @access private
      */
-    private static function parse_email(string $email, boolean $only_domain = true)
+    private static function parse_email(string $email, $only_domain = true)
     {
         sscanf($email, "%[^@]@%s", $user, $domain);
         return ($only_domain) ? $domain : array($user, $domain);
@@ -293,7 +293,7 @@ class Email implements \Validate\Contracts\Validate
      * @access public
      * @return boolean True if an error did occur.
      */
-    public function isError(): boolean
+    public function isError(): bool
     {
         return ($this->error_count > 0);
     }
@@ -343,7 +343,7 @@ class Email implements \Validate\Contracts\Validate
      * @param  string $email Email address
      * @return boolean True if the valid email also exist
      */
-    public function check(string $email): boolean
+    public function check(string $email): bool
     {
         $result = false;
 

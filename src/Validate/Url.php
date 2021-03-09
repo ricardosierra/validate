@@ -16,7 +16,7 @@ class Url implements \Validate\Contracts\Validate
         return 'https://'.$url;
     }
 
-    public static function validate($url)
+    public static function validate($url): bool
     {
         if (strpos($url, ' ') !== false) {
             return false;
@@ -29,7 +29,7 @@ class Url implements \Validate\Contracts\Validate
         return self::splitUrl($url);
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

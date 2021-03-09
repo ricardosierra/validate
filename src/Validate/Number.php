@@ -22,12 +22,12 @@ class Number implements \Validate\Contracts\Validate
         return $number;
     }
 
-    public static function validate($number)
+    public static function validate($number): bool
     {
         return true;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

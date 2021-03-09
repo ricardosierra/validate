@@ -26,5 +26,5 @@ interface Validate
      * @param  string $field
      * @return bool
      */
-    public static function validate($field);
+    public static function validate($field): bool;
 }

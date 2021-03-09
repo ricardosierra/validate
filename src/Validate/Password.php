@@ -49,7 +49,7 @@ class Password implements \Validate\Contracts\Validate
      * @param  string $password
      * @return boolean
      */
-    public static function validate(string $password): boolean
+    public static function validate($password): bool
     {
         if (self::foundInMultiplesArrays(
             [
@@ -81,7 +81,7 @@ class Password implements \Validate\Contracts\Validate
      * @param  string $fromUser
      * @return boolean
      */
-    public static function isSame(string $fromDatabase, string $fromUser)
+    public static function isSame(string $fromDatabase, string $fromUser): bool
     {
         return (self::toDatabase($fromDatabase)===self::toDatabase($fromUser));
     }
