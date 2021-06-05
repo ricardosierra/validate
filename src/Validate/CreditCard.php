@@ -9,7 +9,7 @@ class CreditCard extends \Faker\Provider\Payment implements \Validate\Contracts\
 {
     use MaskTrait;
 
-    public static function toDatabase($creditCardNumber)
+    public static function toDatabase(string $creditCardNumber)
     {
         return strtoupper(preg_replace('/[^0-9]/', '', $creditCardNumber));
     }
@@ -19,7 +19,7 @@ class CreditCard extends \Faker\Provider\Payment implements \Validate\Contracts\
         return strtoupper(preg_replace('/[^0-9]/', '', $creditCardNumber));
     }
 
-    public static function validate($creditCardNumber)
+    public static function validate($creditCardNumber): bool
     {
         $found = false;
         foreach (self::$cardParams as $masks){
@@ -55,7 +55,7 @@ class CreditCard extends \Faker\Provider\Payment implements \Validate\Contracts\
         return Date::yearToDatabase($year);
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

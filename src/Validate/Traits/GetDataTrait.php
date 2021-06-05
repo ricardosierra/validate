@@ -38,7 +38,7 @@ trait GetDataTrait
      * @param  string $file
      * @return bool
      */
-    public static function foundInFile(string $string, string $file): boolean
+    public static function foundInFile(string $string, string $file): bool
     {
         if (!$fileHandle = fopen(self::getFileUrl($file), "r")) {
             return false;

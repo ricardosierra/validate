@@ -6,12 +6,12 @@ use Carbon\Carbon;
 
 class Birthdate extends Date implements \Validate\Contracts\Validate
 {
-    public static function toDatabase($birthdate)
+    public static function toDatabase(string $birthdate)
     {
         return parent::toDatabase($birthdate);
     }
 
-    public static function validate($birthdate)
+    public static function validate($birthdate): bool
     {   
         if (!parent::validate($birthdate)) {
             return false;
@@ -25,7 +25,7 @@ class Birthdate extends Date implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

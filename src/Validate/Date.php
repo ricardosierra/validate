@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 class Date implements \Validate\Contracts\Validate
 {
-    public static function toDatabase($dataOriginal)
+    public static function toDatabase(string $dataOriginal)
     {
         $data = explode('/', $dataOriginal);
         if (isset($data[2])) {
@@ -23,7 +23,7 @@ class Date implements \Validate\Contracts\Validate
         return $data;
     }
 
-    public static function validate($dataOriginal)
+    public static function validate($dataOriginal): bool
     {
         $data = self::toDatabase($dataOriginal);
         if (Carbon::createFromFormat('Y-m-d', $data) !== false) {
@@ -70,7 +70,7 @@ class Date implements \Validate\Contracts\Validate
         return $month;
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         return (self::toDatabase($to)===self::toDatabase($from));
     }

@@ -19,7 +19,7 @@ class Name implements \Validate\Contracts\Validate
         return $fullName;
     }
 
-    public static function validate($fullName)
+    public static function validate($fullName): bool
     {
         $name = self::break($fullName);
 
@@ -63,7 +63,7 @@ class Name implements \Validate\Contracts\Validate
         ];
     }
 
-    public static function isSame(string $to, string $from)
+    public static function isSame(string $to, string $from): bool
     {
         $toBreak = self::break($to);
         $fromBreak = self::break($from);
