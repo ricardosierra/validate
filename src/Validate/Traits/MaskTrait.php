@@ -8,7 +8,7 @@ namespace Validate\Traits;
 trait MaskTrait
 {
 
-    public static function maskIsValidate($number, $mask)
+    public static function maskIsValidate($number, $mask): bool
     {
         $i = 0;
         $maskLen = strlen($mask);

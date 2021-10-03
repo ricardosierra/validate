@@ -48,7 +48,7 @@ class Phone implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function break(string $phone)
+    public static function break(string $phone): array
     {
         $phone = static::toDatabase($phone);
         $data['country'] = '55';

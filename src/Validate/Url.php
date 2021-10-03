@@ -24,6 +24,11 @@ class Url implements \Validate\Contracts\Validate
         return true;
     }
 
+    /**
+     * @return false|string[]
+     *
+     * @psalm-return array{scheme?: string, user?: string, pass?: string, host?: string, port?: string, path?: string, query?: string, fragment?: string}|false
+     */
     public static function break(string $url)
     {
         return self::splitUrl($url);
@@ -180,7 +185,8 @@ class Url implements \Validate\Contracts\Validate
      *
      * @params string $baseUrl Directory of linking page
      * @params string $relativeURL URL to convert to absolute
-     * @return string Absolute URL
+     *
+     * @return false|string Absolute URL
      */
     public static function urlToAbsolute($baseUrl, $relativeUrl)
     {
@@ -260,8 +266,10 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
+     *
+     * @return string
      */
-    public static function urlRemoveDotSegments($path)
+    public static function urlRemoveDotSegments(string $path): string
     {
         // multi-byte character explode
         $inSegs  = preg_split('!/!u', $path);
@@ -296,6 +304,10 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
+     *
+     * @return false|string[]
+     *
+     * @psalm-return array{scheme?: string, user?: string, pass?: string, host?: string, port?: string, path?: string, query?: string, fragment?: string}|false
      */
     public static function splitUrl(string $url, $decode=true)
     {
@@ -411,8 +423,12 @@ class Url implements \Validate\Contracts\Validate
      *
      * Inspired from code available at http://nadeausoftware.com/node/79,
      * Code distributed under OSI BSD (http://www.opensource.org/licenses/bsd-license.php)
+     *
+     * @return string
+     *
+     * @param string[] $parts
      */
-    public static function joinUrl($parts, $encode=true)
+    public static function joinUrl(array $parts, $encode=true): string
     {
         if ($encode) {
             if (isset($parts['user'])) {
