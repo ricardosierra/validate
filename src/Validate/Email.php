@@ -263,10 +263,14 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Parses input string to array(0=>user, 1=>domain)
      *
-     * @param  string  $email
-     * @param  boolean $only_domain
-     * @return string|array
+     * @param string  $email
+     * @param boolean $only_domain
+     *
+     * @return (float|int|null|string)[]|float|int|null|string
+     *
      * @access private
+     *
+     * @psalm-return array{0: float|int|null|string, 1: float|int|null|string}|float|int|null|string
      */
     private static function parse_email(string $email, $only_domain = true)
     {
@@ -302,9 +306,12 @@ class Email implements \Validate\Contracts\Validate
      * Output debugging info
      * Only generates output if debug output is enabled
      *
-     * @see   verifyEmail::$Debugoutput
-     * @see   verifyEmail::$Debug
+     * @see verifyEmail::$Debugoutput
+     * @see verifyEmail::$Debug
+     *
      * @param string $str
+     *
+     * @return void
      */
     protected function edebug($str)
     {
@@ -449,10 +456,12 @@ class Email implements \Validate\Contracts\Validate
      * If an error occurs, returns FALSE.
      *
      * @access protected
-     * @param  string $string The string that is to be written
-     * @return string Returns a result code, as an integer.
+     *
+     * @param string $string The string that is to be written
+     *
+     * @return int Returns a result code, as an integer.
      */
-    protected function _streamQuery(string $query)
+    protected function _streamQuery(string $query): int
     {
         $this->edebug($query);
         return stream_socket_sendto($this->stream, $query . self::CRLF);
@@ -489,10 +498,11 @@ class Email implements \Validate\Contracts\Validate
     /**
      * Get Response code from Response
      *
-     * @param  string $str
-     * @return string
+     * @param string $str
+     *
+     * @return false|string
      */
-    protected function _streamCode(string $str): string
+    protected function _streamCode(string $str)
     {
         preg_match('/^(?<code>[0-9]{3})(\s|-)(.*)$/ims', $str, $matches);
         $code = isset($matches['code']) ? $matches['code'] : false;

@@ -13,7 +13,7 @@ class Gender implements \Validate\Contracts\Validate
         return substr(((string) self::filter(strtoupper(preg_replace('/[^A-z]/', '', $gender)))), 0, 1);
     }
 
-    public static function filter(string $gender)
+    public static function filter(string $gender): string
     {
         if (static::foundInFile($gender, 'gender-names-to-male')) {
             return 'MASCULINO';

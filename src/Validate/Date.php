@@ -33,17 +33,23 @@ class Date implements \Validate\Contracts\Validate
     }
 
 
-    public static function validateYear($year)
+    /**
+     * @return true
+     */
+    public static function validateYear($year): bool
     {
         return true;
     }
 
-    public static function validateYearPresentOrFuturo($year)
+    /**
+     * @return true
+     */
+    public static function validateYearPresentOrFuturo($year): bool
     {
         return true;
     }
 
-    public static function validateMonth($month)
+    public static function validateMonth($month): bool
     {
         $month = (int) $month;
         if ($month>12) {
@@ -52,7 +58,7 @@ class Date implements \Validate\Contracts\Validate
         return true;
     }
 
-    public static function yearToDatabase($year)
+    public static function yearToDatabase($year): int
     {
         $year = (int) $year;
         
